@@ -3,99 +3,135 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>New York State Crime Rates — County‑Level Regression (2023)</title>
+  <title>Regression Analysis of Crime Rates in New York State</title>
   <meta name="description" content="A brief overview of our county-level regression study on New York State crime rates (2023), with methods, key findings, and a downloadable PDF report." />
   <meta name="keywords" content="New York, crime rate, regression, Box-Cox, model selection, AIC, BIC, socioeconomic factors, statistics" />
-  <!-- Open Graph / Twitter cards -->
-  <meta property="og:title" content="New York State Crime Rates — County‑Level Regression (2023)" />
-  <meta property="og:description" content="Overview + PDF download of our study modeling New York counties' crime rates using multiple regression and Box–Cox transformation." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="" />
-  <meta name="twitter:card" content="summary" />
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
-    :root{--bg:#0b1020;--fg:#e6e9f2;--muted:#aab2c5;--card:#151b2f;--accent:#7cc0ff;--accent2:#c6f6d5}
-    *{box-sizing:border-box}
-    html,body{margin:0}
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Ubuntu,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1020 0%,#0d1428 60%,#101733 100%);color:var(--fg);line-height:1.6}
-    .container{max-width:980px;margin:0 auto;padding:24px}
-    header{padding:60px 0 24px; text-align:center}
-    h1{margin:0 0 10px;font-size:clamp(28px,6vw,44px);line-height:1.15}
-    p.lead{color:var(--muted);margin:0 auto;max-width:60ch}
-    .card{background:linear-gradient(180deg,#141b32 0%,#121a34 100%);border:1px solid rgba(255,255,255,.06);border-radius:18px;padding:22px;margin:18px 0;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    h2{font-size:clamp(20px,3.5vw,28px);margin:0 0 8px}
-    h3{font-size:clamp(18px,3vw,22px);margin:12px 0 6px}
-    ul{padding-left:20px}
-    code.k{background:#0f1731;border:1px solid rgba(255,255,255,.06);padding:2px 6px;border-radius:6px}
-    .btns{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}
-    .btn{display:inline-block;padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.12);text-decoration:none;color:var(--fg);transition:transform .05s ease}
-    .btn:hover{transform:translateY(-1px)}
-    .btn.primary{background:linear-gradient(180deg,#1976d2,#1565c0);border:none}
-    .btn.secondary{background:#1a213a}
-    .muted{color:var(--muted)}
-    footer{color:var(--muted);font-size:14px;padding:40px 0;text-align:center}
-    .grid{display:grid;gap:16px}
-    @media (min-width:820px){
-      .grid-two{grid-template-columns:1.15fr .85fr;align-items:start}
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      background: #ffffff;
+      color: #222222;
+      line-height: 1.6;
     }
-    .pill{display:inline-block;background:#0f1731;border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:6px 10px;font-size:12px;color:var(--muted)}
-    .kbd{font-variant-ligatures:none;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
-    .embed{height:520px;border:1px solid rgba(255,255,255,.12);border-radius:14px;overflow:hidden;background:#0f1731}
-    .embed object{width:100%;height:100%}
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h1 {
+      font-size: 2.2em;
+      margin-bottom: 0.3em;
+    }
+    h2 {
+      color: #1a1a1a;
+      border-bottom: 2px solid #e0e0e0;
+      padding-bottom: 8px;
+      margin-top: 1.5em;
+    }
+    p.lead {
+      color: #555;
+      max-width: 70ch;
+      margin: 0 auto;
+      font-size: 1.05em;
+    }
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
+      background: #1976d2;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      margin-top: 20px;
+      transition: background 0.2s ease;
+    }
+    .btn:hover { background: #0f5fab; }
+    .card {
+      background: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+    ul { padding-left: 20px; }
+    footer {
+      text-align: center;
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 60px;
+      padding: 20px 0;
+      border-top: 1px solid #ddd;
+    }
   </style>
 </head>
 <body>
-  <header class="container">
-    <span class="pill">Study Preview · 2023 data</span>
-    <h1>What Drives Crime Rates Across New York Counties?</h1>
-    <p class="lead">A concise summary of our county‑level regression analysis for 62 New York counties (2023), including model selection with AIC/BIC and a Box–Cox transformation, plus a link to the full PDF.</p>
-    <div class="btns">
-      <!-- If your PDF sits beside this HTML file, keep the href as below. If it lives in /assets, change to assets/NY_Crime.pdf -->
-      <a class="btn primary" href="NY_Crime.pdf" download>📄 Download the full report (PDF)</a>
-      <a class="btn secondary" href="#preview">Preview in browser</a>
-    </div>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Regression Analysis of Crime Rates in New York State</h1>
+      <p class="lead">An English version brief summary of our 2023 county-level regression analysis on New York State crime rates, using Box–Cox transformation and model selection via AIC/BIC. The full report (in Mandarin) is available below.</p>
+      <a class="btn" href="NY_Crime.pdf" download>📄 Download Full Report (PDF)</a>
+    </header>
 
-  <main class="container grid grid-two">
     <section class="card">
       <h2>Abstract</h2>
-      <p>We study county‑level variation in New York State’s 2023 index crime rate (ICR) using multiple linear regression. Among eight socioeconomic candidates and a NYC dummy, model selection (AIC/BIC, all‑subsets, stepwise) identifies <em>median income</em> (MI), <em>bachelor’s degree or higher share</em> (BoH), and <em>log total population</em> (log‑TP) as the most informative predictors. A Box–Cox transformation improves diagnostics (normality and homoskedasticity). The final model attains strong explanatory power for a social‑science application and yields intuitive signs for MI (negative) and population scale (positive), while BoH shows a positive association plausibly reflecting urban concentration effects.</p>
-
-      <h3>Key findings</h3>
-      <ul>
-        <li><strong>Final model (BIC):</strong> <span class="kbd">y = β₀ + β₁·MI + β₂·BoH + β₃·log(TP) + ε</span></li>
-        <li><strong>Direction:</strong> MI ↓ with ICR; BoH ↑ with ICR; log‑TP ↑ with ICR.</li>
-        <li><strong>Model quality:</strong> R² ≈ 0.63 (adj. R² ≈ 0.615) with sound residual diagnostics after Box–Cox.</li>
-      </ul>
-      <p class="muted">Full dataset and methods (AIC/BIC, Cp, VIF, diagnostics) are detailed in the PDF.</p>
+      <p>We examine county-level variation in New York State’s 2023 index crime rate (ICR) using multiple linear regression. Among eight socioeconomic candidates and a NYC dummy, model selection (AIC/BIC, all-subsets, stepwise) identifies <em>median income</em> (MI), <em>bachelor’s degree or higher share</em> (BoH), and <em>log total population</em> (log-TP) as the most informative predictors. Applying a Box–Cox transformation improves normality and homoskedasticity. The final model achieves strong explanatory power, intuitive coefficient signs, and statistically significant relationships for all predictors.</p>
     </section>
 
-    <aside class="card">
-      <h2>Download</h2>
-      <p>Grab the full report as a PDF. Keep the filename and path consistent with your repository.</p>
-      <div class="btns">
-        <a class="btn primary" href="NY_Crime.pdf" download>⬇️ Download PDF</a>
-        <a class="btn secondary" href="NY_Crime.pdf" target="_blank" rel="noopener">🔎 Open in new tab</a>
-      </div>
-      <h3>How this page works</h3>
+    <section class="card">
+      <h2>Key Findings</h2>
+      <p>The final Box–Cox transformed model is expressed as:</p>
+      <p style="text-align:center; font-size: 1.2em;">
+        $$\sqrt{\hat{y}} = -6.538 - 0.0003913\,MI + 0.5123\,BoH + 5.074\,\log(TP)$$
+      </p>
       <ul>
-        <li>Place <code class="k">index.html</code> and <code class="k">NY_Crime.pdf</code> in the same folder (root of your repo or a subfolder used by GitHub Pages).</li>
-        <li>If your PDF is in <code class="k">assets/</code>, change links to <code class="k">assets/NY_Crime.pdf</code>.</li>
-        <li>Git is case‑sensitive on the web — make sure the filename matches exactly.</li>
+        <li><strong>F-Statistic:</strong> 33.47 on 3 and 58 degrees of freedom</li>
+        <li><strong>p-value (overall model):</strong> 1.099×10⁻¹²</li>
+        <li><strong>R²:</strong> 0.6338  <strong>Adjusted R²:</strong> 0.6149</li>
+        <li><strong>Coefficients:</strong>
+          <ul>
+            <li>MI: β = −0.0003913  p < 0.001</li>
+            <li>BoH: β = 0.5123  p < 0.001</li>
+            <li>log-TP: β = 5.074  p < 0.001</li>
+          </ul>
+        </li>
       </ul>
-    </aside>
-
-    <section class="card" id="preview" style="grid-column:1/-1">
-      <h2>In‑browser preview</h2>
-      <div class="embed">
-        <object data="NY_Crime.pdf" type="application/pdf">
-          <p>Your browser can’t display PDFs inline. Please use the download link above.</p>
-        </object>
-      </div>
+      <p>All predictors are statistically significant, with higher education level (BoH) and population size showing positive associations with crime rate, while median income exhibits a negative relationship.</p>
     </section>
-  </main>
 
-  <footer>
-    <p>© 2025 Brian Chen · Report PDF: <span class="kbd">NY_Crime.pdf</span></p>
-  </footer>
+    <section class="card">
+      <h2>Variables Used</h2>
+      <p>We employed one dependent variable and nine explanatory variables.</p>
+
+      <h3>Dependent Variable (Y)</h3>
+      <ul>
+        <li><strong>ICR (Index Crime Rate):</strong> The total number of index crimes (murder, non-negligent manslaughter, rape, robbery, aggravated assault, burglary, larceny, motor vehicle theft, arson, and shoplifting) per 100,000 residents in each county.</li>
+      </ul>
+
+      <h3>Explanatory Variables (X)</h3>
+      <ol>
+        <li><strong>PI – Poverty Incidence:</strong> Percentage of people below the poverty threshold as defined by the U.S. Census Bureau.</li>
+        <li><strong>MI – Median Income:</strong> Median household income in each county.</li>
+        <li><strong>UR – Unemployment Rate:</strong> Percentage of unemployed individuals in the labor force.</li>
+        <li><strong>PD – Population Density:</strong> Number of residents per square mile.</li>
+        <li><strong>TP – Total Population:</strong> Total number of residents in each county (later log-transformed for modeling).</li>
+        <li><strong>Age25_44 – Population Aged 25–44:</strong> Proportion of residents aged between 25 and 44.</li>
+        <li><strong>BoH – Bachelor’s Degree or Higher:</strong> Percentage of residents aged 18 or above with at least a bachelor’s degree.</li>
+        <li><strong>ND – No High School Diploma:</strong> Percentage of residents aged 18 or above without a high school diploma.</li>
+        <li><strong>NYC Dummy:</strong> A binary variable equal to 1 if the county belongs to one of New York City’s five boroughs (Manhattan, Brooklyn, Queens, Bronx, or Staten Island), and 0 otherwise.</li>
+      </ol>
+
+      <p>All explanatory variables were obtained from the <strong>U.S. Census Bureau (2023)</strong>, while the dependent variable (ICR) was derived from the <strong>NYPD’s 2023 official crime statistics</strong>. Log transformations were applied to highly skewed variables (PD and TP) to reduce outlier effects and improve linearity.</p>
+    </section>
+
+    <footer>
+      <p>© 2025 Brian Chen · <a href="NY_Crime.pdf">Download Report PDF</a></p>
+    </footer>
+  </div>
 </body>
 </html>
