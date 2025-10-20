@@ -129,6 +129,39 @@
       <p>All explanatory variables were obtained from the <strong>U.S. Census Bureau (2023)</strong>, while the dependent variable (ICR) was derived from the <strong>NYPD’s 2023 official crime statistics</strong>. Log transformations were applied to highly skewed variables (PD and TP) to reduce outlier effects and improve linearity.</p>
     </section>
 
+    <section class="card">
+      <h2>Exploratory Analysis</h2>
+      <p>
+        Before model estimation, scatterplots were used to examine the relationships between each explanatory variable 
+        and the index crime rate (ICR) across New York counties. The first figure below displays the pairwise relationships 
+        for all nine variables. Visual inspection suggests that some predictors, such as <strong>Total Population (TP)</strong> 
+        and <strong>Population Density (PD)</strong>, exhibit a highly non-linear association with ICR.
+      </p>
+
+      <div style="text-align:center; margin:20px 0;">
+        <img src="assets/images/scatter_all.png" alt="Scatterplots of ICR vs explanatory variables" 
+             style="max-width:100%; border-radius:12px; border:1px solid #ddd;">
+        <p style="font-size:0.9em; color:#555;">
+          Figure 1. Scatterplots of the index crime rate (ICR) against each explanatory variable.
+        </p>
+      </div>
+
+      <p>
+        To mitigate this non-linearity and improve the interpretability of the regression model, we applied 
+        a <strong>log transformation</strong> to both <strong>PD</strong> and <strong>TP</strong>. 
+        The following figure demonstrates that the log-transformed variables show a more linear relationship with ICR,
+        supporting their use in the final model specification.
+      </p>
+
+      <div style="text-align:center; margin:20px 0;">
+        <img src="assets/images/scatter_log.png" alt="Scatterplots of ICR vs log-transformed variables" 
+             style="max-width:100%; border-radius:12px; border:1px solid #ddd;">
+        <p style="font-size:0.9em; color:#555;">
+          Figure 2. Scatterplots of ICR versus log-transformed Population Density and Total Population.
+        </p>
+      </div>
+    </section>
+
     <footer>
       <p>© 2025 Brian Chen · <a href="NY_Crime.pdf">Download Report PDF</a></p>
     </footer>
