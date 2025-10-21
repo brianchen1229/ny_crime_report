@@ -9,66 +9,34 @@
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <style>
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      margin: 0;
-      background: #ffffff;
-      color: #222222;
-      line-height: 1.6;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    h1 {
-      font-size: 2.2em;
-      margin-bottom: 0.3em;
-    }
-    h2 {
-      color: #1a1a1a;
-      border-bottom: 2px solid #e0e0e0;
-      padding-bottom: 8px;
-      margin-top: 1.5em;
-    }
-    p.lead {
-      color: #555;
-      max-width: 70ch;
-      margin: 0 auto;
-      font-size: 1.05em;
-    }
-    .btn {
-      display: inline-block;
-      padding: 10px 18px;
-      background: #1976d2;
-      color: #fff;
-      text-decoration: none;
-      border-radius: 8px;
-      margin-top: 20px;
-      transition: background 0.2s ease;
-    }
-    .btn:hover { background: #0f5fab; }
-    .card {
-      background: #f9f9f9;
-      border: 1px solid #e0e0e0;
-      border-radius: 12px;
-      padding: 24px;
-      margin: 20px 0;
-    }
-    ul { padding-left: 20px; }
-    footer {
-      text-align: center;
-      font-size: 0.9em;
-      color: #666;
-      margin-top: 60px;
-      padding: 20px 0;
-      border-top: 1px solid #ddd;
-    }
-  </style>
+  body {font-family: 'Inter', Arial, sans-serif; margin: 0; background: #ffffff; color: #222; line-height: 1.6;}
+  .container {max-width: 900px; margin: 0 auto; padding: 40px 20px;}
+  header {text-align: center; margin-bottom: 40px;}
+  h1 {font-size: 2.2em; margin-bottom: 0.3em;}
+  h2 {color: #1a1a1a; border-bottom: 2px solid #e0e0e0; padding-bottom: 8px; margin-top: 1.5em;}
+  p.lead {color: #555; max-width: 70ch; margin: 0 auto; font-size: 1.05em;}
+  .btn {display: inline-block; padding: 10px 18px; background: #1976d2; color: #fff; text-decoration: none; border-radius: 8px; margin-top: 20px; transition: background 0.2s ease;}
+  .btn:hover {background: #0f5fab;}
+  .card {background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 12px; padding: 24px; margin: 20px 0;}
+  ul {padding-left: 20px;}
+  footer {text-align: center; font-size: 0.9em; color: #666; margin-top: 60px; padding: 20px 0; border-top: 1px solid #ddd;}
+
+  /* --- Formula handling --- */
+  .math-scroll {overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 8px; margin: 8px 0;}
+  .mjx-container {display: block; overflow-x: auto;}
+  .formula {white-space: nowrap; text-align: center; font-size: 1.1em; margin: 0;}
+
+  /* --- Three-line table styling --- */
+  .table-3line {width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.95rem;}
+  .table-3line caption {caption-side: top; text-align: left; font-weight: 600; margin-bottom: 6px;}
+  .table-3line thead th {border-bottom: 2px solid #000; padding: 8px 10px; text-align: left; background: #f3f3f3;}
+  .table-3line tfoot td {border-top: 2px solid #000;}
+  .table-3line {border-top: 2px solid #000; border-bottom: 2px solid #000;}
+  .table-3line th, .table-3line td {border-left: 1px solid #e5e5e5; border-right: 1px solid #e5e5e5; padding: 8px 10px; vertical-align: top;}
+  .table-3line tr:nth-child(even) td {background: #fafafa;}
+  .num {white-space: nowrap; text-align: right;}
+  .vars {font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;}
+</style>
 </head>
 <body>
   <div class="container">
@@ -163,18 +131,26 @@
     </section>
 
     <section class="card">
-      <h2>Initial Model (Full Specification)</h2>
-      <p>The initial regression includes all explanatory variables to assess overall fit and individual significance before model selection. The full specification is:</n></p>
-      <p style="text-align:center; font-size:1.05em;">
-        $$Y = \beta_0 + \beta_1\,PI + \beta_2\,MI + \beta_3\,UR + \beta_4\,\log(PD) + \beta_5\,ND + \beta_6\,Age25\_44 + \beta_7\,\log(TP) + \beta_8\,BoH + \beta_9\,D + \varepsilon.$$
-      </p>
-      <ul>
-        <li><strong>Overall fit:</strong> <em>F</em> = 12.40 on 9 and 52 df, <em>p</em> &lt; 0.001; <strong>Adjusted R² ≈ 0.627</strong>.</li>
-        <li><strong>Significant predictors:</strong> <em>MI</em>, <em>BoH</em>, <em>log(TP)</em> show clear significance; others are not significant at conventional levels.</li>
-        <li><strong>Multicollinearity:</strong> VIF values indicate notable collinearity for <em>log(PD)</em> (≈ 16.35), and elevated values for <em>log(TP)</em> (≈ 8.07) and <em>MI</em> (≈ 6.66).</li>
-      </ul>
-      <p>These diagnostics motivate subsequent model selection and transformation steps to obtain a more parsimonious and stable specification.</p>
-    </section>
+  <h2>Initial Model (Full Specification)</h2>
+  <p>The initial regression includes all explanatory variables to assess overall fit and individual significance before model selection. The full specification is:</p>
+
+  <div class="math-scroll">
+    <p class="formula">
+      $$Y \;=\; \beta_0 \;+\; \beta_1\,PI \;+\; \beta_2\,MI \;+\; \beta_3\,UR \;+\; \beta_4\,\log(PD) \;+\; \beta_5\,ND \;+\;
+      \beta_6\,\text{Age25--44} \;+\; \beta_7\,\log(TP) \;+\; \beta_8\,BoH \;+\; \beta_9\,D \;+\; \varepsilon$$
+    </p>
+  </div>
+
+  <ul>
+    <li><strong>Overall fit:</strong> <em>F</em> = 12.40 on 9 and 52 df, <em>p</em> &lt; 0.001; <strong>Adjusted R² ≈ 0.627</strong>.</li>
+    <li><strong>Significant predictors:</strong> <em>MI</em>, <em>BoH</em>, <em>log(TP)</em> show clear significance; others are not significant at conventional levels.</li>
+    <li><strong>Multicollinearity:</strong> VIF values indicate notable collinearity for <em>log(PD)</em> (≈ 16.35), and elevated values for <em>log(TP)</em> (≈ 8.07) and <em>MI</em> (≈ 6.66).</li>
+  </ul>
+
+  <div style="text-align:center; margin:20px 0;">
+    <img src="Initial_Result.png" alt="Initial regression and VIF results" style="max-width:100%; border-radius:12px; border:1px solid #ddd;">
+  </div>
+</section>
 
   <section class="card">
     <h2>Model Selection</h2>
