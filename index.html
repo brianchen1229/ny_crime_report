@@ -80,7 +80,7 @@
 
     <section class="card">
       <h2>Abstract</h2>
-      <p>We analyze the determinants of crime rate disparities across New York counties in 2023 using a multiple regression framework combined with a Box–Cox transformation to address non-normality and heteroskedasticity. Among nine socioeconomic and demographic variables tested, model selection based on AIC/BIC indicates that median household income, share of college-educated adults, and log total population are the key drivers of crime rate variation. The final model achieves an adjusted R² of 0.615 and shows strong statistical significance overall (F = 33.47, p < 0.001). The results demonstrate that higher income levels are associated with lower crime rates, while education attainment and population scale exhibit positive relationships, reflecting urban concentration effects.</p>
+      <p>We analyze the determinants of crime rate disparities across New York counties in 2023 using a multiple regression framework combined with a Box–Cox transformation to address non-normality and heteroskedasticity. Among nine socioeconomic and demographic variables tested, model selection based on AIC/BIC indicates that median household income, share of college-educated adults, and log total population are the key drivers of crime rate variation. The final model achieves an adjusted R² of 0.615 and shows strong statistical significance overall (F = 33.47, p &lt; 0.001). The results demonstrate that higher income levels are associated with lower crime rates, while education attainment and population scale exhibit positive relationships, reflecting urban concentration effects.</p>
     </section>
 
     <section class="card">
@@ -95,9 +95,9 @@
         <li><strong>R²:</strong> 0.6338  <strong>Adjusted R²:</strong> 0.6149</li>
         <li><strong>Coefficients:</strong>
           <ul>
-            <li>MI: β = −0.0003913  p < 0.001</li>
-            <li>BoH: β = 0.5123  p < 0.001</li>
-            <li>log-TP: β = 5.074  p < 0.001</li>
+            <li>MI: β = −0.0003913  p &lt; 0.001</li>
+            <li>BoH: β = 0.5123  p &lt; 0.001</li>
+            <li>log-TP: β = 5.074  p &lt; 0.001</li>
           </ul>
         </li>
       </ul>
@@ -160,6 +160,20 @@
           Figure 2. Scatterplots of ICR versus log-transformed Population Density and Total Population.
         </p>
       </div>
+    </section>
+
+    <section class="card">
+      <h2>Initial Model (Full Specification)</h2>
+      <p>The initial regression includes all explanatory variables to assess overall fit and individual significance before model selection. The full specification is:</n></p>
+      <p style="text-align:center; font-size:1.05em;">
+        $$Y = \beta_0 + \beta_1\,PI + \beta_2\,MI + \beta_3\,UR + \beta_4\,\log(PD) + \beta_5\,ND + \beta_6\,Age25\_44 + \beta_7\,\log(TP) + \beta_8\,BoH + \beta_9\,D + \varepsilon.$$
+      </p>
+      <ul>
+        <li><strong>Overall fit:</strong> <em>F</em> = 12.40 on 9 and 52 df, <em>p</em> &lt; 0.001; <strong>Adjusted R² ≈ 0.627</strong>.</li>
+        <li><strong>Significant predictors:</strong> <em>MI</em>, <em>BoH</em>, <em>log(TP)</em> show clear significance; others are not significant at conventional levels.</li>
+        <li><strong>Multicollinearity:</strong> VIF values indicate notable collinearity for <em>log(PD)</em> (≈ 16.35), and elevated values for <em>log(TP)</em> (≈ 8.07) and <em>MI</em> (≈ 6.66).</li>
+      </ul>
+      <p>These diagnostics motivate subsequent model selection and transformation steps to obtain a more parsimonious and stable specification.</p>
     </section>
 
     <footer>
