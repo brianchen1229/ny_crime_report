@@ -176,6 +176,134 @@
       <p>These diagnostics motivate subsequent model selection and transformation steps to obtain a more parsimonious and stable specification.</p>
     </section>
 
+  <section class="card">
+    <h2>Model Selection</h2>
+    <p>We summarize stepwise searches (forward, backward, stepwise) under AIC and BIC, and report the best all-subsets combinations. Values are rounded to match the original output.</p>
+  
+    <table class="table-3line">
+      <caption>Stepwise selection summary</caption>
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Criterion</th>
+          <th>Selected variables</th>
+          <th class="num">AIC</th>
+          <th class="num">BIC</th>
+          <th class="num">Adjusted R²</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Forward</td>
+          <td>AIC</td>
+          <td class="vars">log(TP), MI, BoH, Age25–44</td>
+          <td class="num">944.7516</td>
+          <td class="num">957.5144</td>
+          <td class="num">0.6518</td>
+        </tr>
+        <tr>
+          <td>Forward</td>
+          <td>BIC</td>
+          <td class="vars"><strong>log(TP), MI, BoH</strong></td>
+          <td class="num">946.6742</td>
+          <td class="num"><strong>957.3099</strong></td>
+          <td class="num">0.6354</td>
+        </tr>
+        <tr>
+          <td>Backward</td>
+          <td>AIC</td>
+          <td class="vars">log(TP), MI, BoH, Age25–44</td>
+          <td class="num">944.7516</td>
+          <td class="num">957.5144</td>
+          <td class="num">0.6518</td>
+        </tr>
+        <tr>
+          <td>Backward</td>
+          <td>BIC</td>
+          <td class="vars"><strong>log(TP), MI, BoH</strong></td>
+          <td class="num">946.6742</td>
+          <td class="num"><strong>957.3099</strong></td>
+          <td class="num">0.6354</td>
+        </tr>
+        <tr>
+          <td>Stepwise</td>
+          <td>AIC</td>
+          <td class="vars">log(TP), MI, BoH, Age25–44</td>
+          <td class="num">944.7516</td>
+          <td class="num">957.5144</td>
+          <td class="num">0.6518</td>
+        </tr>
+        <tr>
+          <td>Stepwise</td>
+          <td>BIC</td>
+          <td class="vars"><strong>log(TP), MI, BoH</strong></td>
+          <td class="num">946.6742</td>
+          <td class="num"><strong>957.3099</strong></td>
+          <td class="num">0.6354</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <p>Across methods, AIC favors adding <em>Age25–44</em>, while BIC (with a stronger penalty on extra parameters) prefers the more parsimonious specification <strong>log(TP), MI, BoH</strong>.</p>
+  
+    <table class="table-3line">
+      <caption>All-subsets regression — Top 10 by AIC</caption>
+      <thead>
+        <tr>
+          <th>Combination</th>
+          <th class="num">Adj R²</th>
+          <th class="num">AIC</th>
+          <th class="num">BIC</th>
+          <th class="num">Cp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>MI + BoH + log(TP) + Age25–44</td><td class="num">0.6518</td><td class="num">944.7516</td><td class="num">957.5144</td><td class="num">1.2504</td></tr>
+        <tr><td>MI + BoH + log(TP) + log(PD) + Age25–44</td><td class="num">0.6476</td><td class="num">946.3969</td><td class="num">961.2868</td><td class="num">2.9466</td></tr>
+        <tr><td>MI + BoH + log(TP) + PI + Age25–44</td><td class="num">0.6471</td><td class="num">946.4854</td><td class="num">961.3753</td><td class="num">3.0223</td></tr>
+        <tr><td>MI + BoH + log(TP)</td><td class="num">0.6354</td><td class="num">946.6742</td><td class="num">957.3099</td><td class="num">2.7283</td></tr>
+        <tr><td>MI + BoH + log(TP) + log(PD)</td><td class="num">0.6402</td><td class="num">946.7843</td><td class="num">959.5471</td><td class="num">3.0252</td></tr>
+        <tr><td>MI + BoH + log(TP) + D</td><td class="num">0.6368</td><td class="num">947.3741</td><td class="num">960.1369</td><td class="num">3.5511</td></tr>
+        <tr><td>MI + BoH + log(TP) + ND</td><td class="num">0.6310</td><td class="num">948.3347</td><td class="num">961.0975</td><td class="num">4.4185</td></tr>
+        <tr><td>MI + BoH + log(TP) + PI</td><td class="num">0.6304</td><td class="num">948.4448</td><td class="num">961.2076</td><td class="num">4.5188</td></tr>
+        <tr><td>MI + BoH + log(TP) + UR</td><td class="num">0.6298</td><td class="num">948.5397</td><td class="num">961.3025</td><td class="num">4.6054</td></tr>
+        <tr><td>MI + BoH + log(TP) + log(PD)</td><td class="num">0.6402</td><td class="num">950.0402</td><td class="num">960.6758</td><td class="num">5.8932</td></tr>
+      </tbody>
+    </table>
+  
+    <table class="table-3line">
+      <caption>All-subsets regression — Top 10 by BIC</caption>
+      <thead>
+        <tr>
+          <th>Combination</th>
+          <th class="num">Adj R²</th>
+          <th class="num">AIC</th>
+          <th class="num">BIC</th>
+          <th class="num">Cp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>MI + BoH + log(TP)</strong></td><td class="num">0.6354</td><td class="num">946.6742</td><td class="num"><strong>957.3099</strong></td><td class="num">2.7283</td></tr>
+        <tr><td>MI + BoH + log(TP) + Age25–44</td><td class="num">0.6518</td><td class="num">944.7516</td><td class="num">957.5144</td><td class="num">1.2504</td></tr>
+        <tr><td>MI + BoH + log(TP) + log(PD)</td><td class="num">0.6402</td><td class="num">946.7843</td><td class="num">959.5471</td><td class="num">3.0252</td></tr>
+        <tr><td>MI + BoH + log(TP) + D</td><td class="num">0.6368</td><td class="num">947.3741</td><td class="num">960.1369</td><td class="num">3.5511</td></tr>
+        <tr><td>MI + BoH + log(TP) + ND</td><td class="num">0.6310</td><td class="num">948.3347</td><td class="num">961.0975</td><td class="num">4.4185</td></tr>
+        <tr><td>MI + BoH + log(TP) + PI</td><td class="num">0.6304</td><td class="num">948.4448</td><td class="num">961.2076</td><td class="num">4.5188</td></tr>
+        <tr><td>MI + BoH + log(TP) + UR</td><td class="num">0.6298</td><td class="num">948.5397</td><td class="num">961.3025</td><td class="num">4.6054</td></tr>
+        <tr><td>MI + BoH + log(TP) + log(PD) + Age25–44</td><td class="num">0.6476</td><td class="num">946.3969</td><td class="num">961.2868</td><td class="num">2.9466</td></tr>
+        <tr><td>MI + BoH + log(TP) + PI + Age25–44</td><td class="num">0.6471</td><td class="num">946.4854</td><td class="num">961.3753</td><td class="num">3.0223</td></tr>
+      </tbody>
+    </table>
+  
+    <p><strong>Interpretation:</strong> AIC’s best model includes <em>Age25–44</em>, but the BIC-best model—<em>log(TP), MI, BoH</em>—is preferred due to its simplicity and comparable explanatory power.</p>
+  </section>
+
+
+
+
+
+    
+
     <footer>
       <p>© 2025 Brian Chen · <a href="NY_Crime.pdf">Download Report PDF</a></p>
     </footer>
