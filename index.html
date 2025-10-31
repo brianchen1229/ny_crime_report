@@ -252,7 +252,13 @@
 
 <section class="card">
   <h2>Model Diagnostics</h2>
-  <p>The regression model using <strong>MI</strong>, <strong>BoH</strong>, and <strong>log(TP)</strong> was further evaluated to verify the assumptions of multiple linear regression. The following diagnostic plots assess normality, homoscedasticity, and independence of residuals.</p>
+  <p>The regression model using <strong>MI</strong>, <strong>BoH</strong>, and <strong>log(TP)</strong> was further evaluated to verify the assumptions of multiple linear regression. We examined whether the residuals satisfy the following assumptions:</p>
+  <ul style="margin-left:20px; list-style-type:disc;">
+    <li>$$E(e_i) = 0, \quad i = 1, \ldots, n$$</li>
+    <li>$$Var(e_i) = \sigma^2, \quad i = 1, \ldots, n$$</li>
+    <li>$$Cov(e_i, e_j) = 0, \quad i \neq j$$</li>
+  </ul>
+  <p>The following diagnostic plots show the normality, homoscedasticity, and independence of residuals.</p>sess normality, homoscedasticity, and independence of residuals.</p>
 
   <style>
     .fig-row {display:grid; grid-template-columns:1fr 1fr; gap:16px; align-items:start;}
@@ -261,47 +267,47 @@
     .fig p {font-size:0.9em; color:#555; margin:6px 0 0;}
   </style>
 
-  <h3>Normality of Residuals</h3>
+  <h3>Normality</h3>
   <div class="fig-row">
     <div class="fig">
       <img src="qq_plot.png" alt="QQ plot of residuals">
-      <p>Figure 1a. Q-Q plot: points roughly follow the diagonal, with slight deviations at both tails.</p>
+      <p>Figure: Q-Q plot</p>
     </div>
     <div class="fig">
       <img src="pp_plot.png" alt="PP plot of residuals">
-      <p>Figure 1b. P-P plot: overall alignment with the theoretical CDF, indicating near-normality.</p>
+      <p>Figure: P-P plot</p>
     </div>
   </div>
-  <p>The Q-Q and P-P plots show that the residuals approximately follow a normal distribution, though slight deviations occur in the tails, suggesting marginal non-normality.</p>
+  <p>The Q-Q and P-P plots show that there are slight deviations occur in the tails, suggesting non-normality behavior.</p>
 
   <h3>Homoscedasticity</h3>
   <div class="fig-row">
     <div class="fig">
       <img src="residuals_vs_fitted.png" alt="Residuals vs fitted values">
-      <p>Figure 2a. Residuals vs Fitted: residual spread increases with fitted values.</p>
+      <p>Figure: Residual Plot</p>
     </div>
     <div class="fig">
       <img src="spread_level.png" alt="Spread–Level plot">
-      <p>Figure 2b. Spread-Level plot: positive slope indicates increasing variance.</p>
+      <p>Figure: Spread-Level plot</p>
     </div>
   </div>
-  <p>Both plots suggest heteroskedasticity. The residuals exhibit greater dispersion at higher fitted values, confirming that the variance of errors is not constant.</p>
+  <p>Both plots suggest heteroskedasticity. The residuals exhibit greater dispersion at higher fitted values, showing that the variance of errors is not constant.</p>
 
-  <h3>Independence of Residuals</h3>
+  <h3>Independence</h3>
   <div class="fig-row">
     <div class="fig">
       <img src="acf.png" alt="ACF of residuals">
-      <p>Figure 3a. ACF: most autocorrelation values lie within the confidence bounds.</p>
+      <p>Figure: ACF</p>
     </div>
     <div class="fig">
       <img src="pacf.png" alt="PACF of residuals">
-      <p>Figure 3b. PACF: no clear pattern or persistent autocorrelation observed.</p>
+      <p>Figure: PACF</p>
     </div>
   </div>
   <p>The ACF and PACF plots indicate no significant serial correlation, confirming that the residuals are independent.</p>
 
   <h3>Conclusion</h3>
-  <p>Overall, the diagnostics show marginal normality, clear heteroskedasticity, and no evidence of autocorrelation. Because the assumption of constant variance is violated, we conclude that the multiple linear regression assumptions are not fully satisfied. Therefore, a <strong>Box–Cox transformation</strong> was applied to stabilize variance and improve model validity.</p>
+  <p>Overall, the diagnostics indicate limited support for normality, clear evidence of heteroskedasticity, and no sign of autocorrelation. Since the multiple linear regression assumptions are not fully met. Therefore, a Box–Cox transformation was applied to stabilize normailty and variance and enhance model validity.</p>
 </section>
 
 
