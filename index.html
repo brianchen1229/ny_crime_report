@@ -395,33 +395,6 @@
   <p>Overall, the diagnostics demonstrate noticeable improvement in all aspects. The residuals show stronger adherence to normality, reduced heteroskedasticity, and preserved independence, indicating that the Box–Cox transformation effectively stabilized variance and enhanced the validity of the regression model.</p>
 </section>
 
-<section class="card">
-  <h2>Results and Discussion</h2>
-  <p>
-    Based on the AIC, BIC, and C<sub>p</sub> criteria, we selected the most parsimonious model through a combination of forward, backward, and stepwise regression, followed by an all-subsets comparison. Among the nine explanatory variables—poverty incidence (PI), median income (MI), unemployment rate (UR), log population density (log_PD), log total population (log_TP), share of adults aged 25–44 (Age25_44), share of adults with a bachelor’s degree or higher (BoH), share without a high school diploma (ND), and the New York City dummy variable—the final model retained <strong>MI, BoH,</strong> and <strong>log(TP)</strong> as significant predictors of the county-level crime rate. 
-  </p>
-
-  <p style="text-align:center; font-size:1.1em;">
-    $$\sqrt{y} = -6.538 - 0.0003913\,MI + 0.5123\,BoH + 5.074\,\log(TP)$$
-  </p>
-
-  <p>
-    The final model yields an <strong>R² of 0.6338</strong> and an <strong>adjusted R² of 0.6149</strong>, indicating that these three variables jointly explain about 61% of the variation in crime rates across New York counties. All three predictors are statistically significant at the 1% level (p &lt; 0.01). The signs of the coefficients are consistent with theoretical expectations and prior empirical findings in the literature.
-  </p>
-
-  <p>
-    Specifically, <strong>median income (MI)</strong> shows a negative relationship with the crime rate. Holding other variables constant, a one-unit increase in MI is associated with a decrease of 0.0003913 units in the square-root-transformed crime rate per 100,000 people. In contrast, <strong>BoH</strong> and <strong>log(TP)</strong> exhibit positive effects: for every one-percentage-point increase in BoH, the predicted crime rate increases by 0.5123 units, and for each one-unit increase in log(TP), the rate rises by 5.074 units. 
-  </p>
-
-  <p>
-    These results imply that regions with higher income levels tend to have lower crime rates, consistent with the hypothesis that improved economic conditions reduce criminal incentives. Conversely, more urbanized and highly educated regions display higher reported crime rates, which may partly reflect denser populations, greater law enforcement presence, and broader reporting coverage. Thus, the positive association of education and population with crime rates likely captures urbanization and socioeconomic complexity rather than direct causal effects.
-  </p>
-
-  <p>
-    Overall, the model offers a satisfactory explanatory fit and aligns with both statistical assumptions and substantive theory. The findings provide a quantitative basis for understanding socioeconomic influences on crime across New York counties and highlight the interplay between economic well-being, education, and population scale in shaping local crime dynamics.
-  </p>
-</section>
-
 
 <section class="card">
   <h2>Conclusion</h2>
@@ -430,7 +403,7 @@
   </p>
 
   <p>
-    The results reveal that higher income levels are associated with lower crime rates, supporting the view that economic well-being mitigates criminal activity. Meanwhile, both educational attainment and total population are positively related to crime rates, a pattern consistent with urban concentration and population density effects. These findings align with previous research (e.g., Schuessler, 1962; Bhattacharya, 2002; Gibbs & Erickson, 1976; Chang, Kim & Jeon, 2019) that links socioeconomic factors—especially income and education—to regional crime variations.
+    The results reveal that higher income levels are associated with lower crime rates, supporting the view that economic well-being mitigates criminal activity. Meanwhile, both educational attainment and total population are positively related to crime rates, a pattern consistent with urban concentration and population density effects. 
   </p>
 
   <p>
