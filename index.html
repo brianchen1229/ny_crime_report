@@ -348,6 +348,50 @@
   <p>All three predictors—<strong>MI</strong>, <strong>BoH</strong>, and <strong>log(TP)</strong>—remain highly significant (<em>p</em> &lt; 0.001). The model explains about 61.5% of the variance in the transformed crime rate, indicating a good overall fit. The transformation successfully stabilizes variance and enhances the linearity of relationships among variables.</p>
 </section>
 
+<section class="card">
+  <h2>Model Diagnostics after Box–Cox Transformation</h2>
+
+  <p>The diagnostic plots below assess normality, homoscedasticity, and independence of residuals after transformation.</p>
+
+  <h3>Normality</h3>
+  <div style="text-align:center; margin:20px 0;">
+    <img src="BC_QQ.png" alt="QQ plot after Box-Cox transformation" style="max-width:100%; border-radius:12px; border:1px solid #ddd;">
+    <p style="font-size:0.9em; color:#555;">Figure 1. Q–Q plot of residuals. Points align closely along the diagonal, suggesting improved normality compared to the untransformed model.</p>
+  </div>
+
+  <div style="text-align:center; margin:20px 0;">
+    <img src="BC_PP.png" alt="P-P plot after Box-Cox transformation" style="max-width:100%; border-radius:12px; border:1px solid #ddd;">
+    <p style="font-size:0.9em; color:#555;">Figure 2. P–P plot of residuals. The empirical CDF matches the theoretical CDF, indicating the residuals approximately follow a normal distribution.</p>
+  </div>
+
+  <h3>Homoscedasticity</h3>
+  <div style="text-align:center; margin:20px 0;">
+    <img src="BC_resid_fit.png" alt="Residuals vs fitted values after Box-Cox transformation" style="max-width:100%; border-radius:12px; border:1px solid #ddd;">
+    <p style="font-size:0.9em; color:#555;">Figure 3. Residuals vs Fitted Values. The residuals are more evenly scattered around zero, with reduced funnel shape, suggesting improved variance stability.</p>
+  </div>
+
+  <div style="text-align:center; margin:20px 0;">
+    <img src="BC_abs_resid_fit.png" alt="Absolute residuals vs fitted values after Box-Cox transformation" style="max-width:100%; border-radius:12px; border:1px solid #ddd;">
+    <p style="font-size:0.9em; color:#555;">Figure 4. Absolute Studentized Residuals vs Fitted Values. The local smoothing line is approximately flat, supporting the homoscedasticity assumption.</p>
+  </div>
+
+  <h3>Independence</h3>
+  <div style="text-align:center; margin:20px 0;">
+    <img src="BC_ACF.png" alt="ACF of residuals after Box-Cox transformation" style="max-width:100%; border-radius:12px; border:1px solid #ddd;">
+    <p style="font-size:0.9em; color:#555;">Figure 5. ACF plot of residuals. No significant autocorrelation is observed beyond the first lag, indicating independence among residuals.</p>
+  </div>
+
+  <div style="text-align:center; margin:20px 0;">
+    <img src="BC_PACF.png" alt="PACF of residuals after Box-Cox transformation" style="max-width:100%; border-radius:12px; border:1px solid #ddd;">
+    <p style="font-size:0.9em; color:#555;">Figure 6. PACF plot of residuals. The residuals show no significant partial autocorrelation, confirming the independence assumption.</p>
+  </div>
+
+  <p>
+    Overall, the diagnostics indicate that the Box–Cox transformation successfully corrected the heteroskedasticity observed in the initial model. 
+    The residuals exhibit improved normality, constant variance, and independence, validating the adequacy of the transformed regression specification.
+  </p>
+</section>
+
 
 
 
